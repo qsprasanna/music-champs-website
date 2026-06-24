@@ -1,0 +1,12 @@
+# <type>(<scope>): <subject>
+# Example: feat(auth): add login validation
+# -------------------------------------------------------------------------
+# Types: feat, fix, docs, style, refactor, test, chore, perf, ci, build
+# -------------------------------------------------------------------------
+# Subject: Use imperative, present tense ("add" not "added")
+# Scope: (Optional) noun describing the section of the code
+# -------------------------------------------------------------------------
+
+# Body: (Optional) Motivation for the change and contrast with previous behavior.
+
+# Footer: (Optional) Reference issues (e.g., Closes #123)
