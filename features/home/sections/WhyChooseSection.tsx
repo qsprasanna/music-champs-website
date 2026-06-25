@@ -7,7 +7,7 @@ import Link from 'next/link';
 const features = [
   {
     id: 1,
-    imageSrc: '/images/expert-instructors-dark.png?v=2',
+    imageSrc: '/images/expert-instructors-v2.png',
     imageAlt: 'Expert Music Instructors',
     titleRed: 'Expert',
     titleBlack: 'Instructors',
@@ -15,7 +15,7 @@ const features = [
   },
   {
     id: 2,
-    imageSrc: '/images/personal-learning-dark.png?v=2',
+    imageSrc: '/images/personal-learning-v2.png',
     imageAlt: 'Personalized Learning',
     titleRed: 'Personal',
     titleBlack: 'Guidance',
