@@ -2,167 +2,164 @@
 
 import Image from 'next/image';
 import { m, Variants } from 'framer-motion';
-import { cardVariants } from '@/lib/animations';
 import Link from 'next/link';
 
 const features = [
   {
     id: 1,
-    imageSrc: '/images/expert-music-intruments.png',
+    imageSrc: '/images/expert-instructors-dark.png?v=2',
     imageAlt: 'Expert Music Instructors',
     titleRed: 'Expert',
-    titleBlack: 'Music Instructors',
-    description: 'Learn from passionate and experienced music professionals.',
+    titleBlack: 'Instructors',
+    description: 'Learn from passionate, world-class music professionals dedicated to your growth.',
   },
   {
     id: 2,
-    imageSrc: '/images/personal-teaching.png',
+    imageSrc: '/images/personal-learning-dark.png?v=2',
     imageAlt: 'Personalized Learning',
-    titleRed: 'Personalized',
-    titleBlack: 'Learning',
-    description:
-      'Students receive individual attention and customized guidance.',
+    titleRed: 'Personal',
+    titleBlack: 'Guidance',
+    description: 'Receive individual attention and a customized learning path tailored for you.',
   },
   {
     id: 3,
-    imageSrc: '/images/live-classes.png',
+    imageSrc: '/images/live-classes-dark.png',
     imageAlt: 'Live Online Classes',
     titleRed: 'Live',
-    titleBlack: 'Online Classes',
-    description: 'Attend engaging sessions from the comfort of home.',
+    titleBlack: 'Online',
+    description: 'Attend highly engaging, high-fidelity live classes from the comfort of home.',
   },
   {
     id: 4,
-    imageSrc: '/images/flexible-class.png',
-    imageAlt: 'Flexible Class Schedules',
+    imageSrc: '/images/flexible-schedules-dark.png',
+    imageAlt: 'Flexible Schedules',
     titleRed: 'Flexible',
-    titleBlack: 'Class Schedules',
-    description:
-      'Choose timings that fit your daily routine and school schedule.',
+    titleBlack: 'Schedules',
+    description: 'Choose class timings that seamlessly fit into your busy daily routine.',
   },
   {
     id: 5,
-    imageSrc: '/images/interactive-class.png',
+    imageSrc: '/images/interactive-fun-dark.png',
     imageAlt: 'Interactive & Engaging',
     titleRed: 'Interactive',
-    titleBlack: '& Engaging',
-    description: 'Fun activities and live interaction make learning enjoyable.',
+    titleBlack: '& Fun',
+    description: 'Dynamic live interaction and gamified activities make learning a joy.',
   },
   {
     id: 6,
-    imageSrc: '/images/global-community.png',
+    imageSrc: '/images/global-community-dark.png',
     imageAlt: 'Global Community',
     titleRed: 'Global',
     titleBlack: 'Community',
-    description:
-      'Connect with students and music enthusiasts from around the world.',
+    description: 'Connect and collaborate with a worldwide network of passionate musicians.',
   },
 ];
+
 const containerVariants: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.08 } },
 };
 
-// const containerVariants = {
-//   hidden: {},
-//   visible: { transition: { staggerChildren: 0.1 } },
-// };
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.215, 0.61, 0.355, 1] } },
+};
 
-// const cardVariants = {
-//   hidden: { opacity: 0, y: 50 },
-//   visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
-// };
+function ClassyFeatureCard({ feature }: { feature: typeof features[0] }) {
+  return (
+    <m.div
+      variants={cardVariants}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+      className="group relative flex flex-col justify-end overflow-hidden rounded-[32px] bg-[#121829]/40 border border-white/5 shadow-[0_4px_30px_rgba(0,0,0,0.2)] hover:border-red-500/30 hover:shadow-[0_20px_40px_rgba(239,68,68,0.15)] transition-all duration-500 cursor-pointer aspect-[4/5] sm:aspect-[3/4] md:aspect-square lg:aspect-[4/5]"
+    >
+      {/* Premium Full-bleed Classy dark background Image */}
+      <div className="absolute inset-0 z-0 bg-[#0B0F19]">
+        <Image
+          src={feature.imageSrc}
+          alt={feature.imageAlt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-90"
+          priority
+        />
+        {/* Soft, dark, glossy fade gradient at the bottom for perfect text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/80 to-transparent transition-opacity duration-500 group-hover:opacity-95"></div>
+      </div>
+
+      {/* Elegant Red top border on hover */}
+      <div className="absolute top-0 inset-x-0 h-[3.5px] bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10"></div>
+
+      {/* Content Area layered on top of the image */}
+      <div className="relative z-20 p-8 sm:p-10 flex flex-col justify-end h-1/2 pointer-events-none">
+        <h3 className="text-2xl leading-none font-extrabold tracking-tight text-white mb-3">
+          <span className="text-red-500">{feature.titleRed}</span> {feature.titleBlack}
+        </h3>
+        <p className="text-sm font-medium text-slate-400 leading-relaxed transition-colors duration-300 group-hover:text-slate-200">
+          {feature.description}
+        </p>
+      </div>
+    </m.div>
+  );
+}
 
 export default function WhyChooseSection() {
   return (
-    <section className="w-full bg-white px-10 py-16 lg:px-20">
-      <m.h2
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mb-5 text-4xl leading-tight font-black tracking-tight text-neutral-900 lg:text-5xl"
-      >
-        <span className="text-red-500">Why Choose</span> Our Music School ?
-      </m.h2>
+    <section className="w-full bg-[#0B0F19] px-6 py-24 sm:px-10 lg:px-20 relative overflow-hidden">
+      {/* Premium modern radial background glow */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-red-500/5 blur-[120px] pointer-events-none"></div>
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-red-500/5 blur-[120px] pointer-events-none"></div>
 
-      <m.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="mb-14 text-lg leading-relaxed text-neutral-500 md:max-w-3/4"
-      >
-        Music should be creative, enjoyable, and accessible for every child. Our
-        online music classes combine professional teaching, personalized
-        guidance, and engaging learning methods to help students grow
-        confidently.
-      </m.p>
-
-      <m.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-60px' }}
-        className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {features.map((feature) => (
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div className="max-w-2xl">
+            <m.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="mb-4 text-xs font-black tracking-widest text-red-500 uppercase"
+            >
+              ♦ The Music Champs Advantage
+            </m.p>
+            <m.h2
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7 }}
+              className="text-4xl leading-tight font-black tracking-tight text-white sm:text-5xl lg:text-6xl"
+            >
+              Why Choose Our <br className="hidden sm:block" />
+              <span className="text-red-500">Music School</span>
+            </m.h2>
+          </div>
           <m.div
-            key={feature.id}
-            variants={cardVariants}
-            transition={{ duration: 0.55, ease: 'easeOut' }}
-            whileHover={{ y: -6, transition: { duration: 0.2 } }}
-            className="flex cursor-pointer flex-col justify-between overflow-hidden rounded-3xl border-2 border-red-100 bg-red-500 shadow-sm transition-all duration-300 hover:border-red-300 hover:shadow-lg"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
           >
-            {/* Red image panel */}
-            <div className="relative mt-8 h-52 w-full bg-red-500">
-              <div className="absolute -top-8 left-0 h-52 w-full bg-[url('/images/dots-bg.png')] bg-cover opacity-15"></div>
-              <Image
-                src={feature.imageSrc}
-                alt={feature.imageAlt}
-                width={250}
-                height={250}
-                className="z-10 mx-auto h-full object-cover"
-              />
-            </div>
-
-            {/* Text */}
-            <div className="m-1 flex h-full flex-col gap-2 rounded-2xl border-4 bg-white px-6 py-6">
-              <div>
-                <span className="block text-2xl leading-tight font-black text-red-500">
-                  {feature.titleRed}
-                </span>
-                <span className="block text-2xl leading-tight font-black text-neutral-900">
-                  {feature.titleBlack}
-                </span>
-              </div>
-              <p className="mt-1 text-sm leading-relaxed text-neutral-500">
-                {feature.description}
-              </p>
-            </div>
+            <Link
+              className="group relative inline-flex items-center gap-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md px-8 py-4 text-sm font-bold text-white shadow-sm transition-all hover:bg-white/10 hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+              href="/about-us"
+            >
+              Our Success Stories
+              <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </Link>
           </m.div>
-        ))}
-      </m.div>
+        </div>
 
-      <m.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.3 }}
-        className="mt-10"
-      >
-        {/* <a
-          href="/stories"
-          className="flex items-center gap-1 text-sm font-bold text-red-500 hover:underline"
-        > */}
-        <Link
-          className="group border-primary hover:bg-primary w-fit rounded-lg border-2 bg-white px-7 py-3 text-base text-neutral-900 hover:text-white"
-          href="/about-us"
+        <m.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          variants={containerVariants}
+          className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
         >
-          → Our Success Stories
-        </Link>
-        {/* </a> */}
-      </m.div>
+          {features.map((feature) => (
+            <ClassyFeatureCard key={feature.id} feature={feature} />
+          ))}
+        </m.div>
+      </div>
     </section>
   );
 }
